@@ -68,3 +68,38 @@ control input{
 #btnReg:hover{
     background-color: blue;
 }
+.taskTable{
+    display: flex;
+    flex-direction: column ;
+    justify-content:space-around;
+    
+}
+tr{
+    padding-bottom: 1rem;
+    text-align: center;
+    border-bottom:2px solid black;
+
+}
+
+tr:hover{
+    background-color: dodgerblue;
+}
+tbody{
+    font-size: larger;
+    font-weight: 500;
+    
+}
+.input-error{
+    border: 1px solid red;
+    background-color: crimson;
+}
+.hide{
+    display: none;
+}
+.alert-error{
+    border: 1px solid red;
+    background-color: crimson;
+    color: rgb(235, 99, 99);
+    padding: 5px;
+
+}
