@@ -1,6 +1,8 @@
 const LS_KEY="task";
 function saveTask(task) {
+   console.log("USER SAVED"); 
     //load  the old data
+
     let data=readTask();
     //marge old and new data
     data.push(task);

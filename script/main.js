@@ -60,7 +60,7 @@ function hideForm() {
     }
 }
 function register(){
-    let inputImportant= $('#iImportant').val();
+    
     let inputTitle= $('#txtTitle').val();
     let inputDescription= $('#txtDescription').val();
     let inputColor= $('#txtColor').val();
@@ -69,66 +69,61 @@ function register(){
     let inputCategory= $("#txtCategory").val();
 
 
-    console.log(inputImportant,inputTitle,inputDescription,inputColor,inputStartDate,inputDueDate,inputCategory);
-    //create theUser
-    let theTask = new Task(inputImportant,inputTitle,inputDescription,inputColor,inputStartDate,inputDueDate,inputCategory);
-if (isValid(theTask)) {
-        saveTask(theTask);
-        //clear the inputs
-        $("input").val("");
-    }
+    let task = new Task(isImportance,inputTitle,inputDescription,inputColor,inputStartDate,inputDueDate,inputCategory);
+    displayTask(task);
+    console.log(task);
+    saveTask();
     
 }
 function displayTask(task){
     //travel the array
-    $("#taskTable tbody").html("");
-    let data="";
-   for (let i = 0; i < task.length; i++) {
-        console.log(task[i].title);
-        data += createTask(task[i], i);
-        //data = data + createUser(users[i]);
-    }
-    $("#taskTable tbody").html(data);
+    let syntax =`
+        <div class="task">
+            <div class="info">
+                <h5>${task.title}</h5>
+                <p>${task.description}</p>
+            </div>
+            <div class="date">
+                <div>
+                    <label>${task.startDate}</label>
+                    <label>${task.dueDate}</label>
+                </div>
+            </div>
+        </div>
+    `;
+  
+    $("#task-container").append(syntax);
     //get each user
     //display the user
     
     //append the user to the table
     
 }
-function createTask(task, index) {
-    return `
-    <tr>
-    <td> ${task.important}</td>
-    <td> ${task.title}</td>
-    <td> ${task.description}</td>
-    <td> ${task.color}</td>
-    <td>${task.startDate}</td>
-    <td> ${task.dueDate}</td>
-    <td> ${task.category}</td>
-    <td><input type='button' value='Remove' onclick="removeUser(${index})" /></td>
-    </tr>
-    `;
-}
-function removeTask(index) {
-    remove(index);
-    let task=readUsers();
-    displayUsers(task);
 
-}
 
 
 
 function init() {
     console.log("Task Manager");
-    let task=readTask();
-    displayTask(task);
-
+    
     //load data
     
     
     //hook events
     $("#iImportant").click(toggleImportance);
     hideForm();
+}
+function test() {
+    $.ajax({
+        url: "https://restclass.azurewebsites.net/api/test",
+        type: "GET",
+        success: function (response) {
+            console.log("Server says",response);
+        },
+        error: function (errorDetails) {
+            console.log(errorDetails);
+        }
+    });
 }
 
 window.onload = init;
