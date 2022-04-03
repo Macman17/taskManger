@@ -80,13 +80,26 @@ function displayTask(task){
     let syntax =`
         <div class="task">
             <div class="info">
+                <h3>Task</h3>
                 <h5>${task.title}</h5>
                 <p>${task.description}</p>
             </div>
             <div class="date">
                 <div>
+                    <h3>Start</h3>
                     <label>${task.startDate}</label>
+                    <h3>Due</h3>
                     <label>${task.dueDate}</label>
+                </div>
+            </div>
+            <div class="Misc">
+                <div>
+                    <h3>Category</h3>
+                    <label>${task.category}</label>
+                    <h3>Color</h3>
+                    <label>${task.color}</label>
+                    <h3>Importance</h3>
+                    <label>${task.isImportance}</label>
                 </div>
             </div>
         </div>

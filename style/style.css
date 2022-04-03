@@ -1,34 +1,58 @@
+
 html, body{
     margin: 0;
     padding: 0;
 }
+body{
+    background-image: url('/paico-oficial-7jFMs5vzsSQ-unsplash.jpg');
+    background-color: #cccccc;
+    width: 100%;
+    height: 100%;
+}
+
 main{
-    display: flex;
+   display: flex;
 }
 nav{
-    background-color: blue;
+    background-color: rgba(0, 0, 255, 0.61);
     padding: .4rem;
+    color: white;
+    text-shadow: 2px 2px black;
+    text-align: center;
+    box-shadow: 3px 3px rgba(160, 160, 160, 0.411);
+
 }
 h3{
     font-weight: 800;
     font-size: x-large;
     text-align: center;
-}
-#sect-list{
-    flex: 1;
-    min-height: 20rem;
-}
-#sect-form{
-    flex: 1;
-    min-height: 20rem;
-    padding: 3rem;
-    border-left: 1px solid black;
-    background-color: rgb(180, 180, 180);
-    height: calc(100vh - 37px);
-    box-shadow: 10px 5px 5px black;
-   
+    text-shadow: 2px 2px black;
+    color: white;
 }
 
+#sect-list{
+    flex:5;
+    
+}
+#sect-form{
+    flex: 2;
+}
+#sect-form{
+    min-height: 20rem;
+    padding: 1rem 3rem;
+    border-left: 1px solid black;
+    background-color: rgba(163, 160, 160, 0.479);
+    height: calc(100vh - 37px);
+    
+    
+   
+}
+#task-container{
+    display: flex;
+    flex-direction:row;
+    box-shadow: 1px 1px black;
+    
+}
 .control{
     margin-bottom: 15px;
     
@@ -41,19 +65,35 @@ label{
 }
 .form{
     border: 2px solid black;
+    border-radius: 6px;
+    box-shadow: 4px 4px rgba(240, 238, 238, 0.418);
 }
 .control label{
     display: inline-block;
-    width: 9rem;
+    justify-content: space-around;
+    width: 7rem;
     text-align: right;
 
 }
-control input{
+.control input{
     padding: 3px 7px;
+    border-radius: 5px;
 }
 .form .fas{
     color: red;
     
+}
+select{
+    border-radius: 6px;
+    height: 2rem;
+
+}
+textarea{
+    border-radius: 6px;
+}
+#txtColor{
+    width: 8rem;
+    height: 2rem;
 }
 .form .far{
     color: #676768;
@@ -62,32 +102,37 @@ control input{
     padding: 5px;
     padding-left: 1rem;
     padding-right: 1rem;
-    background-color: #676768;
-    margin-left: 13rem;
+    background-color: #dbdbdd;
+    margin-left: 7rem;
+    border-radius: 6px;
 }
 #btnReg:hover{
-    background-color: blue;
+    background-color: rgba(0, 0, 255, 0.541);
 }
 .task{
-    display: flexbox;
+    display: flex;
     flex-direction: column ;
     justify-content: space-between;
-    padding-bottom: 1rem;
+    padding: 1rem;
     text-align: center;
     border:2px solid black;
+    box-shadow: 2px 2px 2px rgba(243, 241, 241, 0.534);
+    border-radius: 5px;
+    background-color: rgba(252, 251, 249, 0.459);
+    padding: 2rem;
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
 }
-.task{
-    
-
+.task h3{
+    text-decoration: underline;
+    font-size: larger;
+    color: black;
+    text-shadow: 2px 2px rgba(121, 119, 119, 0.493);
 }
 
 .task:hover{
-    background-color: dodgerblue;
-}
-tbody{
-    font-size: larger;
-    font-weight: 500;
-    
+    background-color: rgba(0, 0, 255, 0.541) ;
 }
 .input-error{
     border: 1px solid red;
@@ -102,4 +147,25 @@ tbody{
     color: rgb(235, 99, 99);
     padding: 5px;
 
+}
+.info h5{
+    font-size:x-large;
+    font-weight: 600;
+}
+
+#iImportant{
+    cursor: pointer;
+}
+.showHide{
+    border-radius: 6px;
+    padding: 5px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    background-color: #e9e9e9d3;
+    border-radius: 6px;
+    margin-left: 1rem;
+    margin-top: 1rem;
+}
+.showHide:hover{
+    background-color: rgba(0, 0, 255, 0.541);
 }
