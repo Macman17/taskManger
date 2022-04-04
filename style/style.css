@@ -6,8 +6,8 @@ html, body{
 body{
     background-image: url('/paico-oficial-7jFMs5vzsSQ-unsplash.jpg');
     background-color: #cccccc;
-    width: 100%;
-    height: 100%;
+    border-image-width: 40%;
+    height: 40%;
 }
 
 main{
@@ -35,7 +35,7 @@ h3{
     
 }
 #sect-form{
-    flex: 2;
+    flex: 3;
 }
 #sect-form{
     min-height: 20rem;
@@ -43,13 +43,14 @@ h3{
     border-left: 1px solid black;
     background-color: rgba(163, 160, 160, 0.479);
     height: calc(100vh - 37px);
-    
+    position: sticky;
+    top: 0;
     
    
 }
 #task-container{
     display: flex;
-    flex-direction:row;
+    flex-direction:column;
     box-shadow: 1px 1px black;
     
 }
@@ -67,6 +68,7 @@ label{
     border: 2px solid black;
     border-radius: 6px;
     box-shadow: 4px 4px rgba(240, 238, 238, 0.418);
+    
 }
 .control label{
     display: inline-block;
@@ -110,8 +112,8 @@ textarea{
     background-color: rgba(0, 0, 255, 0.541);
 }
 .task{
-    display: flex;
-    flex-direction: column ;
+    display: grid;
+    grid: 250px/ auto auto auto ;
     justify-content: space-between;
     padding: 1rem;
     text-align: center;
@@ -165,7 +167,12 @@ textarea{
     border-radius: 6px;
     margin-left: 1rem;
     margin-top: 1rem;
+    position: sticky;
+    bottom: 25px;
 }
 .showHide:hover{
     background-color: rgba(0, 0, 255, 0.541);
+}
+.date, .info, .misc{
+    border: 1px solid black;
 }

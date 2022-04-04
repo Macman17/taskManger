@@ -12,25 +12,12 @@ class Task{
         this.startDate= startDate;
         this.dueDate = dueDate;
         this.category = category;
+
+
+        this.owner = "Naqui";
     }
 }
-function isValid(task) {
-    //validate the user *** Extra Home work
-        
-   let valid=true;
-   $('input').removeClass("input-error");
-   if (task.title.length == 0) {
-       console.log("Please add a title");
-       valid=false;
-       $('#txtTitle').addClass("input-error");
-   }
-   if(!valid){
-       displayError("Missing data");
-  
-   }
 
-   return valid;
-}
 
 
 function toggleImportance() {
@@ -67,21 +54,54 @@ function register(){
     let inputStartDate= $("#txtStartDate").val();
     let inputDueDate= $('#txtDueDate').val();
     let inputCategory= $("#txtCategory").val();
+    
+    if (inputTitle.length < 5) {
+        $("#inputError").removeClass("hide");
+        setTimeout(function(){
+            $("#inputError").addClass("hide")
+        },3000)
 
-
+        return; 
+    }
     let task = new Task(isImportance,inputTitle,inputDescription,inputColor,inputStartDate,inputDueDate,inputCategory);
-    displayTask(task);
-    console.log(task);
-    saveTask();
+
+    //save to server
+    sendtask(task);
+    
     
 }
+
+function sendtask(task) {
+
+    let jsonData = JSON.stringify(task);//encoding the obj to a json string
+    $.ajax({
+        type: "POST",
+        url: "https://fsdiapi.azurewebsites.net/api/tasks/",
+        data: jsonData,
+        contentType: "application/json",
+        success: function (data) {
+            console.log(data);
+            //display task
+            displayTask(task);
+            
+            //clear form
+            clearForm();    
+        },
+        error: function (errorDetails) {
+            console.log(errorDetails);
+        },
+    });
+    
+}
+
 function displayTask(task){
     //travel the array
     let syntax =`
-        <div class="task">
-            <div class="info">
+        <div class="task" style="border: 4px solid ${task.color}">
+            <div class="info" >
                 <h3>Task</h3>
                 <h5>${task.title}</h5>
+                <h3>Description</h3>
                 <p>${task.description}</p>
             </div>
             <div class="date">
@@ -92,7 +112,7 @@ function displayTask(task){
                     <label>${task.dueDate}</label>
                 </div>
             </div>
-            <div class="Misc">
+            <div class="misc">
                 <div>
                     <h3>Category</h3>
                     <label>${task.category}</label>
@@ -112,8 +132,44 @@ function displayTask(task){
     //append the user to the table
     
 }
+function clearForm() {
+    
+    $("#txtTitle").val("");
+    $("#txtDescription").val("");
+    $("#txtColor").val("#000");
+    $("#txtStartDate").val("");
+    $("#txtDueDate").val("");
+    $("#txtCategory").val("");
 
+}
 
+function loadTask() {
+    $.ajax({
+        type:"GET",
+        url: "https://fsdiapi.azurewebsites.net/api/tasks",
+        success: function (jsonData) {
+            
+            let data = JSON.parse(jsonData);//decoding JSON String
+            console.log(data);
+            
+            //travel the array, get every elements from the array (task)
+            //send the task to be displayed on screen
+            for (let i = 0; i < data.length; i++) {
+                
+                let task = data[i];
+                if (task.owner == "Naqui") {
+                    displayTask(task);
+                }
+                
+            }
+            
+        },
+        error: function (errorDetails) {
+            console.log(errorDetails);
+        }
+
+    });
+}
 
 
 function init() {
@@ -121,22 +177,10 @@ function init() {
     
     //load data
     
-    
+    loadTask();
     //hook events
     $("#iImportant").click(toggleImportance);
     hideForm();
-}
-function test() {
-    $.ajax({
-        url: "https://restclass.azurewebsites.net/api/test",
-        type: "GET",
-        success: function (response) {
-            console.log("Server says",response);
-        },
-        error: function (errorDetails) {
-            console.log(errorDetails);
-        }
-    });
 }
 
 window.onload = init;
